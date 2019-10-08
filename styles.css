@@ -1,0 +1,35 @@
+h1 {
+	background-color: DarkRed;
+	color: Gold;
+}
+
+#image_goals {
+	width: 60%;
+	margin: 0 auto;
+}
+
+#resumeBody {
+  column-count: 2;
+}
+
+#umd_logo {
+	width: 250;
+	height: 180;
+}
+	
+#work_history h2 {
+	color: Red;
+}
+
+#work_history h3 {
+	font-style: italic;
+}
+
+#work_history p {
+	 font-family: "Times New Roman", Times, serif;
+	 font-size: 18px;
+}
+
+#work_history {
+	background-color: Gold;
+}
