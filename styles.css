@@ -60,6 +60,8 @@ h3 {
   font-size: 1.5em;
   text-transform: capitalize;
   flex-wrap: nowrap;
+  text-align: center;
+  border: 3px solid green;
 }
 
 .instructions {
