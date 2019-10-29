@@ -25,7 +25,7 @@
         .then(res => res.json())
         .then(res => {
           var green = res.find(function (res) {
-            return res.title === "UMD Bus Route 122 Green";
+            return res.title === "122 Green";
           });
           document.querySelector(".header").innerHTML = green.title;
           return res;
