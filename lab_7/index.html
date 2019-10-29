@@ -37,10 +37,15 @@
           var ticket_ul="<ul>";
           for (var i=0; i < res.length; i++) {
             var route_id=res[i].route_id;
+            
             var title=res[i].title;
+            
             var ticket_li="<li>" + route_id + " " + title + "</li>";
             ticket_ul+=ticket_li;
             
+            if (!(res[i].title.indexOf(res[i].route_id))) {
+              res[i].title = res[i].title.slice(4, res[i].title.length); // String MAtching
+            }
            
           
             
