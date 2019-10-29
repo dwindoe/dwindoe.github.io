@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+  <title>Test AJAX page</title>
+  <link rel="stylesheet" type="text/css" href="./lab_styles.css">
+</head>
+
+
+<body>
+  <div class="container">
+    <div class="wrapper">
+      <div class="header">UMD Bus Routes</div>
+      <button class="button" onclick="loadData()">Load Some JSON</button>
+      <div class="content"></div>
+      <div class="footer"></div>
+    </div>
+  </div>
+
+  <script>
+    function loadData() {
+      fetch('https://api.umd.io/v0/bus/routes')
+        .then(res => res.json())
+        .then(res => {
+          var green = res.find(function (res) {
+            return res.title === "122 Green";
+          });
+          document.querySelector(".header").innerHTML = green.title;
+          return res;
+        })
+        .then(res => {
+          // you can now work in this area
+          console.log(res);
+          route_data = sessionStorage.setItem("data", res);
+          var tag_ul = "<ul>";
+          for (var i = 0; i < res.length; i++) {
+            var route_id = res[i].route_id;
+            var title = res[i].title;
+            var tag_li = "<li>" + route_id + " " + title + "</li>";
+            tag_ul += tag_li;
+            
+            if (!(res[i].title.indexOf(res[i].route_id))) {
+              res[i].title = res[i].title.slice(4, res[i].title.length);
+            }
+          }
+
+          console.log(res);
+          tag_ul += "</ul>";
+          return tag_ul;
+          
+        })
+        .then(data => document.querySelector(".content").innerHTML = data)
+        .then(data => {
+          data = sessionStorage.getItem("data");
+          console.log(data);
+          return data;
+        });
+    }
+  </script>
+</body>
+
+</html>
