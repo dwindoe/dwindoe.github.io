@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-
 <head>
   <title>Test AJAX page</title>
   <link rel="stylesheet" type="text/css" href="./lab_styles.css">
 </head>
-
 
 <body>
   <div class="container">
@@ -18,7 +15,6 @@
       <div class="footer"></div>
     </div>
   </div>
-
   <script>
     function loadData() {
       fetch('https://api.umd.io/v0/bus/routes')
@@ -31,35 +27,40 @@
           return res;
         })
         .then(res => {
+
           // you can now work in this area
           console.log(res);
-          route_data = sessionStorage.setItem("data", res);
-          var ticket_ul="<ul>";
-          for (var i=0; i < res.length; i++) {
-            var route_id=res[i].route_id;
-            
-            var title=res[i].title;
-            
-            var ticket_li="<li>" + route_id + " " + title + "</li>";
-            ticket_ul+=ticket_li;
-            
-            if (!(res[i].title.indexOf(res[i].route_id))) {
-              res[i].title = res[i].title.slice(4, res[i].title.length); // String MAtching
-            }
-           
           
+          route_data = sessionStorage.setItem("data", res);
+          var ticket_ul = "<ul>";
+          
+          for (var i = 0; i < res.length; i++) {
+            var route_id = res[i].route_id;
             
+            var title = res[i].title;
             
+            var ticket_li = "<li>" + route_id + " " + title + "</li>";
+           
+            ticket_ul += ticket_li;
+            // String matching
+            if (!(res[i].title.indexOf(res[i].route_id))) {
+              res[i].title = res[i].title.slice(4, res[i].title.length);
+            }
+            const arg = document.querySelector(".header");
+            arg.innerText = "UMD Bus Route 122 Green";
           }
           console.log(res);
           ticket_ul += "</ul>";
+
           return ticket_ul;
-          
+
+
         })
         .then(data => document.querySelector(".content").innerHTML = data)
         .then(data => {
           data = sessionStorage.getItem("data");
           console.log(data);
+
           return data;
         });
     }
