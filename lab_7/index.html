@@ -42,9 +42,9 @@
             var ticket_li = "<li>" + route_id + " " + title + "</li>";
            
             ticket_ul += ticket_li;
-            // String matching
-            if (!(res[i].title.indexOf(res[i].route_id))) {
-              res[i].title = res[i].title.slice(4, res[i].title.length);
+           
+            if (!(res[i].title.indexOf(res[i].route_id))) {            // String matching
+              res[i].title = res[i].title.slice(4, res[i].title.length);  
             }
             const arg = document.querySelector(".header");
             arg.innerText = "UMD Bus Route 122 Green";
