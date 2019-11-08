@@ -1,1 +1,47 @@
-INDEX
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Test AJAX page</title>
+  <link rel="stylesheet" type="text/css" href="./lab_styles.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="wrapper">
+      <div class="header">API Loader</div>
+      <button class="button" onclick="loadData()">Load Some JSON from a server</button>
+      <div class="content"></div>
+      <div class="footer"></div>
+    </div>
+  </div>
+  <script>
+    function loadData() {
+      console.log('fetch'); 
+      fetch('/api')
+        .then(res => res.json())
+        .then(res => res.data.map(c => c.course_id + ":" + c.name))
+        .then(res => {
+           
+          console.log(res);
+		  
+          olist_string = "<ol>";
+		  
+          for(i=0; i<res.length; i++){
+		  
+            olist_string += "<li>" + res[i] + "</li>"
+			
+          }
+		  
+          olist_string += "</ol>"
+		  
+          return olist_string;
+        })
+		
+        .then(codes => document.querySelector(".content").innerHTML = codes);
+		
+    }
+  </script>
+</body>
+
+</html>
